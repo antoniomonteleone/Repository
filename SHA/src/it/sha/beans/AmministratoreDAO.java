@@ -41,7 +41,7 @@ private DBManager db;
 	
 	public boolean verificaAccount(Amministratore a) throws NoSuchAlgorithmException
 	{
-		boolean esito;
+		
 		Vector<Object> res=new Vector<Object>();
 		String query= "SELECT * FROM amministratore WHERE password= '?' AND email= '?' ";
 		String password=ControlSha.sha256(a.getPassword().toString());
@@ -49,7 +49,9 @@ private DBManager db;
 		query=query.replaceFirst("[?]", a.getEmail().toString());
 		res = db.executeSelect(query, "Amministratore"); // accesso in scrittura
 		if(res.size()==1)
-			return esito = true;
+		{
+			return true;
+		}
 		return false;
 	}
 	
